@@ -11,7 +11,7 @@ module Platform85
           target  = Pathname.new(Dir.pwd).join(@dir)
 
           Dir.chdir(target)
-          yield
+          yield target
         ensure
           Dir.chdir(current)
         end

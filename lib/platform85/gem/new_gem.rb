@@ -6,7 +6,8 @@ module Platform85
         @dir = dir
       end
 
-      def generate; end
+      def generate
+      end
     end
   end
 end

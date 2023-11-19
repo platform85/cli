@@ -1,5 +1,6 @@
 require "fileutils"
 require "platform85/dev/test/directory"
+require "tmpdir"
 
 module Platform85
   module Dev
@@ -8,30 +9,10 @@ module Platform85
       #
       # NOTE: this changes the current `Dir.pwd`
       class TempDirectory
-        def with(dir = Pathname.new("tmp").join("aruba"), &block)
-          delete_tmp_directory(dir)
-          create_tmp_directory(dir)
-
-          Directory.new(dir).with(&block)
-        ensure
-          delete_tmp_directory(dir)
-        end
-
-        private
-
-        def create_tmp_directory(dir)
-          FileUtils.mkdir_p(dir)
-        end
-
-        def delete_tmp_directory(dir)
-          directory = case dir
-                      when Pathname
-                        dir
-                      when String
-                        Pathname.new(dir)
-                      end
-
-          FileUtils.rm_rf(directory) if directory.exist?
+        def with(&block)
+          Dir.mktmpdir do |dir|
+            Directory.new(dir).with(&block)
+          end
         end
       end
     end
