@@ -5,3 +5,5 @@ require "bundler/setup"
 require "platform85/cli/commands"
 
 Platform85::Cli::Commands.start
+
+# Thor::Runner.register Task, "task", "USAGE", "DESC"
