@@ -8,12 +8,16 @@ module Platform85
         include Thor::Actions
         argument :name
 
+        def self.source_root
+          File.dirname(__FILE__)
+        end
+
         def create_dir
           `mkdir #{name}`
         end
 
         def create_lib_file
-          template('template/README.md.tt', "#{name}/README.md")
+          template("template/README.md.tt", "#{name}/README.md")
         end
       end
     end
