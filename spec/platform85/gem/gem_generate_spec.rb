@@ -5,9 +5,13 @@ require "platform85/dev/test/temp_directory"
 module Platform85
   module Gem
     RSpec.describe NewGem do
+      def platform_exec(cmd)
+        `#{RootPath.new.join("bin/platform85")} #{cmd}`
+      end
+
       example "it can generate new gem " do
         Dev::Test::TempDirectory.new.with do
-          NewGem.new("new-library", {}).generate
+          platform_exec("gem new new-gem")
         end
       end
     end
