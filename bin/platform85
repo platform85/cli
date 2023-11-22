@@ -9,10 +9,16 @@ require "thor"
 module Platform85
   module Cli
     class Commands < Thor
-      desc "example", "an example task"
-      def example
-        puts "I'm a thor task!"
+
+      class Gem < Thor
+        desc "new gem", "create new gem"
+        def new(name)
+          `mkdir #{name}`
+        end
       end
+
+      desc "gem", "gem commands"
+      subcommand "gem", Gem
     end
   end
 end
