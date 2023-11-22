@@ -3,3 +3,18 @@
 
 require "bundler/setup"
 require "platform85/cli"
+
+require "thor"
+
+module Platform85
+  module Cli
+    class Commands < Thor
+      desc "example", "an example task"
+      def example
+        puts "I'm a thor task!"
+      end
+    end
+  end
+end
+
+Platform85::Cli::Commands.start
