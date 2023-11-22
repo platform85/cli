@@ -2,25 +2,6 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "platform85/cli"
-
-require "thor"
-
-module Platform85
-  module Cli
-    class Commands < Thor
-
-      class Gem < Thor
-        desc "new gem", "create new gem"
-        def new(name)
-          `mkdir #{name}`
-        end
-      end
-
-      desc "gem", "gem commands"
-      subcommand "gem", Gem
-    end
-  end
-end
+require "platform85/cli/commands"
 
 Platform85::Cli::Commands.start
